@@ -44,6 +44,14 @@
         "TITLE": "Account ID",
         "NOTE": "This ID is required if you are building an API based integration"
       },
+      "AUTO_TRANSLATE": {
+        "TITLE": "Auto translate conversations",
+        "NOTE": "Show incoming messages in each agent's language and send replies in the contact's language, using Captain.",
+        "API": {
+          "SUCCESS": "Auto translate setting updated successfully",
+          "ERROR": "Failed to update auto translate setting"
+        }
+      },
       "AUTO_RESOLVE": {
         "TITLE": "Auto-resolve conversations",
         "NOTE": "This configuration would allow you to automatically resolve the conversation after a certain period of inactivity.",
@@ -104,6 +112,14 @@
           "ERROR": "Failed to update audio transcription setting"
         }
       },
+      "ENFORCE_MFA": {
+        "TITLE": "Enforce two-factor authentication",
+        "NOTE": "Require every member of this account to set up two-factor authentication. Members without it will be asked to set it up at their next password sign-in. Sign-ins through Google or SAML are exempt. API access tokens of members who have not set up two-factor authentication stop working for this account until they enrol.",
+        "API": {
+          "SUCCESS": "Two-factor authentication enforcement updated successfully",
+          "ERROR": "Failed to update two-factor authentication enforcement"
+        }
+      },
       "AUTO_RESOLVE_DURATION": {
         "LABEL": "Inactivity duration for resolution",
         "HELP": "Duration after a conversation should auto resolve if there is no activity",
@@ -125,7 +141,8 @@
     },
     "UPDATE_CHATWOOT": "An update {latestChatwootVersion} for Chatwoot is available. Please update your instance.",
     "LEARN_MORE": "Learn more",
-    "PAYMENT_PENDING": "Your payment is pending. Please update your payment information to continue using Chatwoot",
+    "PAYMENT_PENDING": "Your account payment is past due. Please update your payment information to avoid subscription cancellation.",
+    "PAYMENT_PENDING_AGENT": "Your account payment is past due. Please contact your administrator to resolve it.",
     "UPGRADE": "Upgrade to continue using Chatwoot",
     "LIMITS_UPGRADE": "Your account has exceeded the usage limits, please upgrade your plan to continue using Chatwoot",
     "OPEN_BILLING": "Open billing"
