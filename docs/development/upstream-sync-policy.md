@@ -15,16 +15,20 @@ GitHub 不允许把公开仓库的 fork 改成私有还保留 fork 关系。需�
 
 ## 分支模型
 
-上游默认分支是 `develop`，稳定版用 tag。KT 不把 `develop` 当生产线。
+上游有两条线，不要合成一条看：
+
+- `master` 是稳定分支。`v4.18.0` 就是 `upstream/master`（`9f920b549c14491a4e587687a3eed5d21c6ccc7d`）。
+- `develop` 是 GitHub 默认的开发分支。它和 `v4.18.0` 的共同祖先是 `a9552e8802`。相对这个点，稳定线多 15 个发布提交，开发线多 138 个未发布提交。`v4.18.0` 不在 `develop` 上。
 
 | 分支 | 职责 |
 |---|---|
+| `master` | 只镜像 `upstream/master`。禁止 KT 提交 |
 | `develop` | 只镜像 `upstream/develop`。禁止 KT 提交 |
-| `main` | KT 生产线。上游 release tag + 白名单定制。当前基线 `v4.18.0`（`9f920b549c14491a4e587687a3eed5d21c6ccc7d`） |
+| `main` | KT 生产线。从稳定 tag 出发，只加白名单定制。当前基线 `v4.18.0` |
 | `upstream-sync` | 跟上游的缓冲线。在这里合并目标 tag、解冲突 |
 | `gitops-prod` | 部署纳入 Argo CD 后再建立。本文件生效时不存在 |
 
-同步目标用 release tag，不用 `develop` HEAD。`v4.18.0` 之后 `develop` 已再前进，那些提交等下一个评估过的 tag。
+同步目标用 release tag，不用 `develop` HEAD。下一个 tag 会先出现在 `upstream/master`。`develop` 上未发布的提交，包括开发环境依赖的安全更新，等它们进入 release tag 再评估。
 
 ## 许可证边界
 
@@ -69,7 +73,7 @@ git merge vX.Y.Z
 
 PR 描述写明：上游 from → to、冲突摘要、白名单定制是否受影响、验证结果。
 
-合入 `main` 之后，把 `develop` 快进到当时的 `upstream/develop`，保持镜像，不把 KT 提交带进 `develop`。
+合入 `main` 之后，把 `master` 快进到 `upstream/master`，把 `develop` 快进到 `upstream/develop`。两条都只做镜像，不接收 KT 提交。
 
 ## 给审查者和 Agent
 
