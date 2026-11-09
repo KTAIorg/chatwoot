@@ -84,7 +84,7 @@ gem 'barnes'
 ##--- gems for authentication & authorization ---##
 gem 'devise', '>= 4.9.4'
 # 2.2.3 requires Devise 5; Chatwoot remains on Devise 4 for this upgrade stack.
-gem 'devise-secure_password', '2.2.1'
+gem 'devise-secure_password', '2.2.3'
 gem 'devise_token_auth', '>= 1.2.3'
 gem 'rails-i18n', '~> 7.0'
 # two-factor authentication
@@ -124,7 +124,7 @@ gem 'google-cloud-translate-v3', '>= 0.7.0'
 ##-- apm and error monitoring ---#
 # loaded only when environment variables are set.
 # ref application.rb
-gem 'datadog', '~> 2.0', require: false
+gem 'datadog', '~> 2.48', require: false
 gem 'elastic-apm', require: false
 gem 'newrelic_rpm', require: false
 gem 'newrelic-sidekiq-metrics', '>= 1.6.2', require: false
